@@ -1,0 +1,40 @@
+.navbar {
+  padding: 0px 20px;
+}
+
+.navbar-nav img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+.navbar .appLogo {
+  width: 170px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.navbar .nav-item .nav-link {
+  color: #4b5e6c;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.navbar .nav-item:hover .nav-link {
+  color: #2b373f;
+}
+
+.navbar .nav-item {
+  padding: 0px 15px 5px;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+}
+
+.activeLink a {
+  color: #0000fe !important;
+  font-weight: bold !important;
+}
