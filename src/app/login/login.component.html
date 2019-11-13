@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="wrapper">
+    <div class="inner">
+        <div class="image-holder">
+            <div class="innerDiv">
+                <img src="/assets/imgs/appLogoB.png" alt="">
+            </div>
+        </div>
+        <div class="form">
+            <h3>Login Here!</h3>
+            <div class="form-wrapper">
+                <input [(ngModel)]="email" type="email" placeholder="Email Address" class="form-control">
+                <i class="far fa-envelope"></i>
+            </div>
+            <div class="form-wrapper">
+                <input [(ngModel)]="password" type="password" placeholder="Password" class="form-control">
+                <i class="fas fa-lock"></i>
+            </div>
+            <button [disabled]="!email || !password" (click)="onLogin(email, password)">Login</button>
+        </div>
+    </div>
+</div>

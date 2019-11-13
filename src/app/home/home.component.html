@@ -6,4 +6,44 @@
 
 <section class="mainContent">
 
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item mt-2"><a class="pointer" routerLink="/home">MyWay</a></li>
+        <li class="breadcrumb-item mt-2"><a class="pointer" routerLink="/home">Home</a></li>
+        <li class="breadcrumb-item mt-2 active">{{allUsers.length}} Users</li>
+        <input [(ngModel)]="query" style="width: 300px; margin-left: auto" type="text" placeholder="Search here..."
+            class="form-control">
+    </ul>
+
+    <table class="table table-sm table-hover table-bordered bg-white">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Status</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of allUsers | userFilter: query; index as i">
+                <td>{{i+1}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.emailAddress}}</td>
+                <td>{{user.phone}}</td>
+                <td class="text-success" *ngIf="user.status=='unblock' || !user.status">Verified</td>
+                <td class="text-danger" *ngIf="user.status=='blocked'">Non-verified</td>
+                <td class="text-center">
+                    <button routerLink="/user-detail/{{user.uid}}" class="btn btn-sm btn-primary mr-1">Detail</button>
+                    <button (click)="updateStatus(user, 'blocked')" *ngIf="user.status=='unblock' || !user.status"
+                        class="btn btn-sm btn-danger mr-1">Block</button>
+                    <button (click)="updateStatus(user, 'unblock')" *ngIf="user.status=='blocked'"
+                        class="btn btn-sm btn-success">Unblock</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </section>

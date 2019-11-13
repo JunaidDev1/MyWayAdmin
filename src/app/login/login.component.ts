@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  onLogin(email, password) {
+    if (email == "admin@myway.com" && password == "admin112233") {
+      localStorage.setItem('userLoggedIn', 'true');
+      this.router.navigate(['/home']);
+    }
+    else {
+      alert("Invalid Email or Password!");
+    }
   }
 
 }
