@@ -13,7 +13,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AllRidesComponent } from './all-rides/all-rides.component';
 import { RideDetailComponent } from './ride-detail/ride-detail.component';
 import { SettingsComponent } from './settings/settings.component';
-import { ProfileComponent } from './profile/profile.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
 import { SearchPipe } from './search.pipe';
@@ -38,7 +37,6 @@ const appRoutes: Routes = [
   { path: 'all-rides', component: AllRidesComponent },
   { path: 'ride-detail', component: RideDetailComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'withdrawal-requests', component: WithdrawalRequestsComponent },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -55,7 +53,6 @@ const appRoutes: Routes = [
     AllRidesComponent,
     RideDetailComponent,
     SettingsComponent,
-    ProfileComponent,
     WithdrawalRequestsComponent,
     SearchPipe
   ],

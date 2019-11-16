@@ -1,1 +1,151 @@
-<p>all-rides works!</p>
+<app-header></app-header>
+
+<div class="mainContent">
+
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item mt-2"><a class="pointer" routerLink="/home">MyWay</a></li>
+        <li class="breadcrumb-item mt-2"><a class="pointer" routerLink="/home">Home</a></li>
+        <li class="breadcrumb-item mt-2 active">MyWay Rides:</li>
+        <input [(ngModel)]="query" style="width: 300px; margin-left: auto" type="text" placeholder="Search here..."
+            class="form-control">
+    </ul>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">Completed</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">Cancelled</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content pt-4">
+        <div class="tab-pane container active" id="home">
+            <table class="table table-bordered table-sm bg-white">
+                <thead>
+                    <th>#</th>
+                    <th>Rider</th>
+                    <th>Driver</th>
+                    <th>Pickup</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Fare</th>
+                    <th class="text-center">Action</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane container fade" id="home">
+            <table class="table table-bordered table-sm bg-white">
+                <thead>
+                    <th>#</th>
+                    <th>Rider</th>
+                    <th>Driver</th>
+                    <th>Pickup</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Fare</th>
+                    <th class="text-center">Action</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane container fade" id="home">
+            <table class="table table-bordered table-sm bg-white">
+                <thead>
+                    <th>#</th>
+                    <th>Rider</th>
+                    <th>Driver</th>
+                    <th>Pickup</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Fare</th>
+                    <th class="text-center">Action</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Sam Doe</td>
+                        <td>John Doe</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>20/09/2019</td>
+                        <td>$20.99</td>
+                        <td class="text-center">
+                            <button routerLink="/ride-detail" class="btn btn-sm btn-primary">Ride Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

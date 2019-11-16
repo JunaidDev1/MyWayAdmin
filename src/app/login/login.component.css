@@ -62,7 +62,7 @@ a:hover {
 .image-holder img {
   height: 90vh !important;
   object-fit: contain;
-  max-width: 100%;
+  max-width: 80%;
 }
 
 .form {
@@ -102,21 +102,17 @@ a:hover {
 
 .form-wrapper i {
   position: absolute;
-  bottom: 9px;
-  font-size: 12px;
+  bottom: 17px;
+  font-size: 18px;
   right: 10px;
 }
 
 .form-control {
   border: 1px solid #333;
-  border-top: none;
-  border-right: none;
-  border-left: none;
   display: block;
   width: 100%;
-  height: 30px;
-  padding: 0;
-  margin-bottom: 2.5em;
+  height: 50px;
+  margin-bottom: 2em;
 }
 
 .form-control::-webkit-input-placeholder {

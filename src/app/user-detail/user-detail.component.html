@@ -12,38 +12,234 @@
         <li class="breadcrumb-item mt-2 active">{{user.firstName}} {{user.lastName}}</li>
     </ul>
 
+
+    <!-- ++++++++  IF USER IS NEW AND NOT VERIFIED YET ++++++++ -->
+
+    <div *ngIf="!user.status" class="alert alert-warning">
+        <strong>Passport under review!</strong> {{user.firstName}} is not allowed to be the rider of MyWay unless
+        successful passport verification.
+        <button data-target="#verifyPassport" data-toggle="modal" (click)="getActive('unblock')"
+            style="margin-top: -4px !important;" class="btn btn-success float-right btn-sm">Accept Profile</button>
+        <button (click)="updateRiderStatus('notVerified')" style="margin-top: -4px !important;"
+            class="btn btn-danger float-right btn-sm mx-2">Reject
+            Profile</button>
+    </div>
+
+
+    <!-- ++++++++  IF USER'S PASSPORT HAS BEEN EXPIRED ++++++++ -->
+
+    <div *ngIf="passportExpired" class="alert alert-danger">
+        <strong>Passport expired!</strong> {{user.firstName}}'s passport is expired, ask him to upload valid passport!
+        <button (click)="updateRiderStatus('notVerified', 'expired')" style="margin-top: -4px !important;"
+            class="btn btn-danger float-right btn-sm mx-2">Send Notification</button>
+    </div>
+
+
+    <!-- ++++++++  IF USER'S DRIVING LICENSE HAS BEEN EXPIRED ++++++++ -->
+
+    <div *ngIf="licenseExpired" class="alert alert-danger">
+        <strong>License expired!</strong> {{user.firstName}}'s driving license is expired, ask him to upload valid
+        driving license! <button (click)="updateDriverStatus('nonVerified', 'expired')"
+            style="margin-top: -4px !important;" class="btn btn-danger float-right btn-sm mx-2">Send
+            Notification</button>
+    </div>
+
+
+    <!-- ++++++++  IF USER HAS SUBMITTED VEHICLE INFO BUT NOT VERIFIED YET ++++++++ -->
+
+    <div *ngIf="user.vehicle && !user.vehicle.driverVerified" class="alert alert-info">
+        <strong>Vehicle papers under review!</strong> {{user.firstName}} is not allowed be the driver of MyWay unless
+        successful documents verification.
+        <button data-target="#verifyLicense" data-toggle="modal" (click)="getActive('true')"
+            style="margin-top: -4px !important;" class="btn btn-success float-right btn-sm">Accept Profile</button>
+        <button (click)="updateDriverStatus('nonVerified')" style="margin-top: -4px !important;"
+            class="btn btn-danger float-right btn-sm mx-2">Reject
+            Profile</button>
+    </div>
+
     <div class="row userData bg-white p-3 mb-3">
         <div class="col-md-3 text-center">
-            <img [src]="user.profileUrl || './assets/imgs/user.png'">
+            <img (click)="selectedImg=user.profileUrl" data-target="#viewImg" data-toggle="modal"
+                [src]="user.profileUrl || './assets/imgs/user.png'" class="userImg pointer">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <table class="table table-bordered table-sm mt-3">
                 <tr class="row">
-                    <td class="col-md-2">Full Name</td>
-                    <td class="col-md-10">{{user.firstName}} {{user.lastName}}</td>
+                    <td class="col-md-4">Full Name</td>
+                    <td class="col-md-8">{{user.firstName}} {{user.lastName}}</td>
                 </tr>
                 <tr class="row">
-                    <td class="col-md-2">Email Address</td>
-                    <td class="col-md-10">{{user.emailAddress}}</td>
+                    <td class="col-md-4">Email Address</td>
+                    <td class="col-md-8">{{user.emailAddress}}</td>
                 </tr>
                 <tr class="row">
-                    <td class="col-md-2">Phone Number</td>
-                    <td class="col-md-10">{{user.phone}}</td>
+                    <td class="col-md-4">Phone Number</td>
+                    <td class="col-md-8">{{user.phone}}</td>
                 </tr>
                 <tr class="row">
-                    <td class="col-md-2">City</td>
-                    <td class="col-md-10">{{user.city}}</td>
+                    <td class="col-md-4">City</td>
+                    <td class="col-md-8">{{user.city}}</td>
                 </tr>
                 <tr class="row">
-                    <td class="col-md-2">Country</td>
-                    <td class="col-md-10">{{user.country}}</td>
+                    <td class="col-md-4">Country</td>
+                    <td class="col-md-8">{{user.country}}</td>
                 </tr>
                 <tr class="row">
-                    <td class="col-md-2">Joined on:</td>
-                    <td class="col-md-10">{{user.timestamp | date:'medium'}}</td>
+                    <td class="col-md-4">Joined on:</td>
+                    <td class="col-md-8">{{user.timestamp | date:'medium'}}</td>
                 </tr>
             </table>
+        </div>
+        <div class="col-md-3">
+            <div class="bg-white">
+                <div class="riderInfo">
+                    <h5 class="text-center">Rider Profile</h5>
+                    <p>SSN: {{user.ssn}}</p>
+                    <p>DOB: {{user.dob}}</p>
+                    <div *ngIf="user.legalDocument" class="text-center">
+                        <img class="passport" [src]="user.legalDocument">
+                    </div>
+                    <div class="px-5">
+                        <button (click)="selectedImg=user.legalDocument" data-toggle="modal" data-target="#viewImg"
+                            class="btn btn-info w-100 mt-3">View Passport</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="user.vehicle" class="row mb-5">
+        <div class="col-md-12">
+            <h4>Driving Profile of {{user.firstName}} {{user.lastName}}:</h4>
+        </div>
+        <div class="col-md-3" *ngIf="user.vehicle.vehicleImages">
+            <div class="anItem shadow text-center mt-2">
+                <p>Vehicle Information</p>
+                <p>{{user.vehicle.vehicleColor}} {{user.vehicle.vehicleModel}} </p>
+                <p>{{user.vehicle.vehicleNumber}} </p>
+                <img [src]=user.vehicle.vehicleImages[0]>
+                <div class="text-center px-5 mt-3">
+                    <button (click)="selectedImg=user.vehicle.vehicleImages[0]" data-toggle="modal"
+                        data-target="#viewImg" class="btn btn-info w-100">View</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="user.vehicle.drivingLicense">
+            <div class="anItem shadow text-center mt-2">
+                <p>Driving License</p>
+                <img [src]=user.vehicle.drivingLicense>
+                <div class="text-center px-5 mt-3">
+                    <button (click)="selectedImg=user.vehicle.drivingLicense" data-toggle="modal" data-target="#viewImg"
+                        class="btn btn-info w-100">View</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="user.vehicle.vehiclePaper">
+            <div class="anItem shadow text-center mt-2">
+                <p>Vehicle Papers</p>
+                <img [src]=user.vehicle.vehiclePaper>
+                <div class="text-center px-5 mt-3">
+                    <button (click)="selectedImg=user.vehicle.vehiclePaper" data-toggle="modal" data-target="#viewImg"
+                        class="btn btn-info w-100">View</button>
+                </div>
+            </div>
         </div>
     </div>
 
 </section>
+
+
+<!-- ++++++++  OPEN IMAGES MODAL ++++++++ -->
+
+
+<div *ngIf="selectedImg" class="modal" id="viewImg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <img [src]="selectedImg">
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ++++++++  PASSPORT VERIFICATION MODAL ++++++++ -->
+
+
+<div class="modal" id="verifyPassport">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Enter passport expiry date</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="w-100">Expiry Date:</label>
+                    <input [(ngModel)]="expiryDate" type="date" class="form-control">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                <button (click)="updateRiderStatus(status)" type="button" class="btn btn-success"
+                    data-dismiss="modal">Verify User</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ++++++++  LICENSE VERIFICATION MODAL ++++++++ -->
+
+
+<div class="modal" id="verifyLicense">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Enter license expiry date</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="w-100">Expiry Date:</label>
+                    <input [(ngModel)]="licenseExpiryDate" type="date" class="form-control">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                <button (click)="updateDriverStatus(status)" type="button" class="btn btn-success"
+                    data-dismiss="modal">Verify User</button>
+            </div>
+
+        </div>
+    </div>
+</div>

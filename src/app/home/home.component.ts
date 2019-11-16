@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit {
 
   public loading = false;
   public allUsers: Array<any> = [];
+  public newUsers: Array<any> = [];
+  public passportExpiredUsers: Array<any> = [];
+  public licenseExpiredUsers: Array<any> = [];
 
   constructor(
     public router: Router, ) {
@@ -32,7 +35,27 @@ export class HomeComponent implements OnInit {
         for (var key in users) {
           var user = users[key];
           user.key = key;
-          self.allUsers.push(user);
+          if (!user.status) {
+            self.newUsers.push(user);
+          }
+          if (user.status == 'unblock' && !self.checkPassportExpiry(user)) {
+            if (user.vehicle) {
+              if (!self.checkLicenseExpiry(user) && user.vehicle.driverVerified != 'nonVerified') {
+                self.allUsers.push(user);
+              }
+            }
+            else {
+              self.allUsers.push(user);
+            }
+          }
+          if (self.checkPassportExpiry(user) && user.status != 'notVerified') {
+            self.passportExpiredUsers.push(user);
+          }
+          if (user.vehicle) {
+            if (self.checkLicenseExpiry(user)) {
+              self.licenseExpiredUsers.push(user);
+            }
+          }
         }
         self.loading = false;
       })
@@ -41,6 +64,32 @@ export class HomeComponent implements OnInit {
         alert(e);
       })
   }
+
+
+  checkPassportExpiry(user) {
+    var currentDate = new Date();
+    var td = currentDate.getFullYear() + '-' + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' + ('0' + currentDate.getDate()).slice(-2);
+    if (user.passportExpiry == td) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
+
+  checkLicenseExpiry(user) {
+    var currentDate = new Date();
+    var td = currentDate.getFullYear() + '-' + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' + ('0' + currentDate.getDate()).slice(-2);
+    if (user.vehicle.licenseExpiry == td) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   updateStatus(user, status) {
     user.status = status;

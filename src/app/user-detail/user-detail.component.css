@@ -1,10 +1,35 @@
-.userData img {
+.userData .userImg {
   width: 250px;
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
 }
 
+.userData .passport {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
 .userData h5 span {
   width: 200px !important;
+}
+
+.anItem {
+  padding: 1em 0em;
+  background-color: #ffffff;
+}
+
+.anItem img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 20%;
+}
+
+.modal-body img {
+  width: 100% !important;
+  height: 400px !important;
+  object-fit: contain !important;
 }

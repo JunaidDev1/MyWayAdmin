@@ -1,12 +1,13 @@
 <div class="wrapper">
     <div class="inner">
         <div class="image-holder">
-            <div class="innerDiv">
+            <div class="innerDiv text-center">
                 <img src="/assets/imgs/appLogoB.png" alt="">
             </div>
         </div>
         <div class="form">
             <h3>Login Here!</h3>
+            <p class="text-center">Please login to your Admin Account!</p>
             <div class="form-wrapper">
                 <input [(ngModel)]="email" type="email" placeholder="Email Address" class="form-control">
                 <i class="far fa-envelope"></i>
@@ -15,7 +16,7 @@
                 <input [(ngModel)]="password" type="password" placeholder="Password" class="form-control">
                 <i class="fas fa-lock"></i>
             </div>
-            <button [disabled]="!email || !password" (click)="onLogin(email, password)">Login</button>
+            <button class="btn" [disabled]="!email || !password" (click)="onLogin(email, password)">Login</button>
         </div>
     </div>
 </div>
