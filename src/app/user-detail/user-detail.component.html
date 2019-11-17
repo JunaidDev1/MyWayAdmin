@@ -57,7 +57,7 @@
             Profile</button>
     </div>
 
-    <div class="row userData bg-white p-3 mb-3">
+    <div class="row userData bg-white boxshadow p-3 mb-3">
         <div class="col-md-3 text-center">
             <img (click)="selectedImg=user.profileUrl" data-target="#viewImg" data-toggle="modal"
                 [src]="user.profileUrl || './assets/imgs/user.png'" class="userImg pointer">
@@ -109,8 +109,13 @@
     </div>
 
 
-    <div *ngIf="user.vehicle" class="row mb-5">
-        <div class="col-md-12">
+    <div class="bg-white shadow p-3">
+        <p class="mt-0 mb-0">{{user.firstName}} has taken 2 rides using MyWay:
+            <button routerLink="/user-rides" class="btn btn-link btn-sm">View {{user.firstName}}'s Rides</button></p>
+    </div>
+
+    <div *ngIf="user.vehicle" class="row my-3">
+        <div class="col-md-12 text-center mt-2 mb-2">
             <h4>Driving Profile of {{user.firstName}} {{user.lastName}}:</h4>
         </div>
         <div class="col-md-3" *ngIf="user.vehicle.vehicleImages">

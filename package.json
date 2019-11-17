@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@ckeditor/ckeditor5-angular": "^1.1.2",
+    "@ckeditor/ckeditor5-build-classic": "^15.0.0",
     "firebase": "^7.3.0",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-loading": "^8.0.0",

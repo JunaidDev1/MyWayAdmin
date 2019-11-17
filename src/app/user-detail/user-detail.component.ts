@@ -40,7 +40,9 @@ export class UserDetailComponent implements OnInit {
         }
         self.loading = false;
         self.checkPassportExpiry();
-        self.checkLicenseExpiry();
+        if (this.user.vehicle) {
+          self.checkLicenseExpiry();
+        }
       });
   }
 

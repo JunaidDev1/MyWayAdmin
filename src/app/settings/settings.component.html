@@ -1,1 +1,39 @@
-<p>settings works!</p>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', fullScreenBackdrop:true }"></ngx-loading>
+<app-header></app-header>
+
+<div class="mainContent">
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#menu1">Update Privacy Policy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">Update Terms of Service</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu3">Update About Us</a>
+        </li>
+    </ul>
+
+
+    <div *ngIf="appData" class="tab-content mt-3">
+        <div class="tab-pane container active" id="menu1">
+            <ckeditor [editor]="Editor" [(ngModel)]="appData.privacyPolicy"></ckeditor>
+            <button (click)="saveData('privacyPolicy' ,appData.privacyPolicy)" class="btn btn-success mt-2 mb-5">Save
+                privacy Policy</button>
+        </div>
+
+        <div class="tab-pane container fade" id="menu2">
+            <ckeditor [editor]="Editor" [(ngModel)]="appData.termsService"></ckeditor>
+            <button (click)="saveData('termsService',appData.termsService)" class="btn btn-success mt-2 mb-5">Save terms
+                of service</button>
+        </div>
+
+        <div class="tab-pane container fade" id="menu3">
+            <ckeditor [editor]="Editor" [(ngModel)]="appData.aboutUs"></ckeditor>
+            <button (click)="saveData('aboutUs',appData.aboutUs)" class="btn btn-success mt-2 mb-5">Save
+                Data</button>
+        </div>
+    </div>
+
+</div>

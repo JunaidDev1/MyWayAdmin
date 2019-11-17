@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import * as firebase from 'firebase';
 
@@ -16,6 +17,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
 import { SearchPipe } from './search.pipe';
+import { UserRidesComponent } from './user-rides/user-rides.component';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyBceS69RhmluvE-9MLGnR0gqvPv9eGQ1fk",
@@ -37,6 +40,7 @@ const appRoutes: Routes = [
   { path: 'all-rides', component: AllRidesComponent },
   { path: 'ride-detail', component: RideDetailComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'user-rides', component: UserRidesComponent },
   { path: 'withdrawal-requests', component: WithdrawalRequestsComponent },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -54,10 +58,12 @@ const appRoutes: Routes = [
     RideDetailComponent,
     SettingsComponent,
     WithdrawalRequestsComponent,
-    SearchPipe
+    SearchPipe,
+    UserRidesComponent
   ],
   imports: [
     FormsModule,
+    CKEditorModule,
     NgxLoadingModule.forRoot({}),
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     BrowserModule

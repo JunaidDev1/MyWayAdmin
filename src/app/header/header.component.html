@@ -25,12 +25,11 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle pointer" id="navbardrop" data-toggle="dropdown">
-                    Admin Name <img [src]="profileUrl || '/assets/imgs/user.jpg'">
+                    Admin Justus
                 </a>
                 <div class="dropdown-menu">
-                    <a routerLink="/profile" class="dropdown-item"><i class="fas fa-edit"></i> Edit profile</a>
-                    <a routerLink="/settings" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
-                    <a (click)="logout()" class="dropdown-item"><i class="fas fa-power-off"></i> Log out</a>
+                    <a routerLink="/settings" class="dropdown-item pointer"><i class="fas fa-cog"></i> Settings</a>
+                    <a (click)="logout()" class="dropdown-item pointer"><i class="fas fa-power-off"></i> Log out</a>
                 </div>
             </li>
         </ul>
